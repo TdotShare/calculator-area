@@ -1,5 +1,6 @@
 import EquationAnswer from '../../components/EquationAnswer'
 import EquationInput from '../../components/EquationInput'
+import EquationSelect from '../../components/EquationSelect'
 import CalculateVM from '../../viewmodel/CalculateVM'
 
 function Calculate() {
@@ -21,26 +22,7 @@ function Calculate() {
                             </div>
                             <div className="card-body" >
 
-                                <table className="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">เลือกสูตรสมการ</th>
-                                            <th scope="col">สูตรสมการ</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row"><input onChange={viewModel.actionCalculate} type="radio" name='equation' value={1} /> </th>
-                                            <td> x<sup>2</sup> + y<sup>2</sup> + Dx + Ey + F = 0 </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><input onChange={viewModel.actionCalculate} type="radio" name='equation' value={2} /> </th>
-                                            <td>( x - h )<sup>2</sup> + ( y - k )<sup>2</sup> = r<sup>2</sup>  </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                                <hr />
+                                <EquationSelect action_calculate={viewModel.actionCalculate} />
 
                                 <EquationInput 
                                 equat={viewModel.equat}

@@ -26,22 +26,27 @@ function EquationInput({ equat, ref_form, on_submit_form }: AppProps) {
 
                                     <>
 
+
                                         <div className="form-row">
                                             <div className="form-group col-md">
-                                                <label >ค่า N</label>
-                                                <input type="number" name='eq_n' className="form-control" />
+                                                <label >ค่า n</label>
+                                                <input type="number" name='eq_one_n' className="form-control" />
                                             </div>
                                             <div className="form-group col-md">
                                                 <label >ค่า D</label>
-                                                <input type="number" name='eq_d' className="form-control" />
+                                                <input type="number" name='eq_one_d' className="form-control" />
                                             </div>
                                             <div className="form-group col-md">
                                                 <label >ค่า E</label>
-                                                <input type="number" name='eq_e' className="form-control" />
+                                                <input type="number" name='eq_one_e' className="form-control" />
                                             </div>
                                             <div className="form-group col-md">
                                                 <label >ค่า F</label>
-                                                <input type="number" name='eq_f' className="form-control" />
+                                                <input type="number" name='eq_one_f' className="form-control" />
+                                            </div>
+                                            <div className="form-group col-md">
+                                                <label >ค่า n</label>
+                                                <input type="number" name='eq_one_n2' className="form-control" />
                                             </div>
                                         </div>
                                     </>
@@ -52,16 +57,16 @@ function EquationInput({ equat, ref_form, on_submit_form }: AppProps) {
 
                                         <div className="form-row">
                                             <div className="form-group col-md">
-                                                <label >ค่า H</label>
-                                                <input type="number" name='eq_h' className="form-control" />
+                                                <label >ค่า n</label>
+                                                <input type="number" name='eq_two_n' className="form-control" />
                                             </div>
                                             <div className="form-group col-md">
-                                                <label >ค่า K</label>
-                                                <input type="number" name='eq_k' className="form-control" />
+                                                <label >ค่า r</label>
+                                                <input type="number" name='eq_two_r' className="form-control" />
                                             </div>
                                             <div className="form-group col-md">
-                                                <label >ค่า R</label>
-                                                <input type="number" name='eq_r' className="form-control" />
+                                                <label >ค่า n</label>
+                                                <input type="number" name='eq_two_n2' className="form-control" />
                                             </div>
                                         </div>
 
