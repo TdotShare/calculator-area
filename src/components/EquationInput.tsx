@@ -44,10 +44,6 @@ function EquationInput({ equat, ref_form, on_submit_form }: AppProps) {
                                                 <label >ค่า F</label>
                                                 <input type="number" name='eq_one_f' className="form-control" />
                                             </div>
-                                            <div className="form-group col-md">
-                                                <label >ค่า n</label>
-                                                <input type="number" name='eq_one_n2' className="form-control" />
-                                            </div>
                                         </div>
                                     </>
 
@@ -63,10 +59,6 @@ function EquationInput({ equat, ref_form, on_submit_form }: AppProps) {
                                             <div className="form-group col-md">
                                                 <label >ค่า r</label>
                                                 <input type="number" name='eq_two_r' className="form-control" />
-                                            </div>
-                                            <div className="form-group col-md">
-                                                <label >ค่า n</label>
-                                                <input type="number" name='eq_two_n2' className="form-control" />
                                             </div>
                                         </div>
 

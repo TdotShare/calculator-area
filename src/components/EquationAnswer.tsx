@@ -1,10 +1,13 @@
 import React from 'react'
+import parse from 'html-react-parser';
 
 type AppProps = {
     answer_show: Boolean;
+    answer_text: String;
+    proposition: string;
 }
 
-function EquationAnswer({ answer_show }: AppProps) {
+function EquationAnswer({ answer_show , answer_text , proposition }: AppProps) {
     return (
         <>
 
@@ -14,7 +17,8 @@ function EquationAnswer({ answer_show }: AppProps) {
                     <>
                         <div style={{ marginBottom: `2%` }}></div>
 
-                        <p><b>ผลลัพธ์ : </b> พื้นที่รูปหลายเหลี่ยม = <span style={{ color: 'red' }}>0.00</span> ตร.น</p>
+                        <p><b>โจทย์ที่ตั้ง : </b> {parse(proposition)}</p>
+                        <p><b>ผลลัพธ์ : </b> พื้นที่รูปหลายเหลี่ยม = <span style={{ color: 'red' }}>{answer_text}</span> ตร.น</p>
 
                     </>
 

@@ -7,6 +7,7 @@ export default function CalculateVM() {
     const [equat , setEquat ] = useState<Number>(0)
     const [answerShow , setAnswerShow ] = useState<Boolean>(false)
     const [answerText , setAnswerText ] = useState<String>("")
+    const [proposition , setProposition] = useState<string>("")
 
 
 
@@ -42,26 +43,29 @@ export default function CalculateVM() {
                 formdata.get('eq_one_n') ===  "" || 
                 formdata.get('eq_one_d') ===  "" ||
                 formdata.get('eq_one_e') ===  "" ||
-                formdata.get('eq_one_f') ===  "" ||
-                formdata.get('eq_one_n2') ===  ""
+                formdata.get('eq_one_f') ===  ""
                 ){
                     alert('กรุณากรอกตัวแปรให้ครบในสูตรที่ 1 ก่อนกดคำนวณ !')
                     return
             }
 
-            // data = {
-            //     "eq_one_n" : formdata.get('eq_one_n'),
-            //     "eq_one_d" : formdata.get('eq_one_d'),
-            //     "eq_one_e" : formdata.get('eq_one_e'),
-            //     "eq_one_f" : formdata.get('eq_one_f'),
-            //     "eq_one_n2" : formdata.get('eq_one_n2'),
-            // }
-
 
             let step1 = 0.125 *  Number(formdata.get('eq_one_n')) // (0.125*n)
             let step2 = Number(formdata.get('eq_one_d')) ** 2 + Number(formdata.get('eq_one_e')) ** 2  - ( 4 * Number(formdata.get('eq_one_f')) ) // (D^2 + E^2 - 4F)
-            let step3 = Math.sin(360 / Number(formdata.get('eq_one_n2')));
+            let step3 = Math.sin(360 / Number(formdata.get('eq_one_n')));
             let sum =  step1 * step2 * step3
+
+            if(sum < 0){
+                alert('หาค่าไม่ได้ กรุณากรอกเลขใหม่')
+                return 
+            }
+
+            if(Number.isNaN(sum)){
+                alert('หาค่าไม่ได้ กรุณากรอกเลขใหม่')
+                return 
+            }
+
+            setProposition(`(0.125*${formdata.get('eq_one_n')})(${formdata.get('eq_one_d')}<sup>2</sup> + ${formdata.get('eq_one_e')}<sup>2</sup> -4(${formdata.get('eq_one_f')}))*sin(360/${formdata.get('eq_one_n')})`)
             setAnswerText(sum.toFixed(2).toString())
 
         }
@@ -70,23 +74,30 @@ export default function CalculateVM() {
 
             if(
                 formdata.get('eq_two_n') ===  "" || 
-                formdata.get('eq_two_r') ===  "" ||
-                formdata.get('eq_two_n2') ===  "" 
+                formdata.get('eq_two_r') ===  ""
                 ){
                     alert('กรุณากรอกตัวแปรให้ครบในสูตรที่ 2 ก่อนกดคำนวณ !')
                     return
             }
 
-            // data = {
-            //     "eq_two_n" : formdata.get('eq_two_n'),
-            //     "eq_two_r" : formdata.get('eq_two_r'),
-            //     "eq_two_n2" : formdata.get('eq_two_n2'),
-            // }
-
             let step1 = 0.5 * Number(formdata.get('eq_two_n'))
             let step2 = Number(formdata.get('eq_two_r')) ** 2
-            let step3 = Math.sin(360 / Number(formdata.get('eq_two_n2')));
+            let step3 = Math.sin(360 / Number(formdata.get('eq_two_n')));
             let sum =  step1 * step2 * step3
+
+            if(sum < 0){
+                alert('หาค่าไม่ได้ กรุณากรอกเลขใหม่')
+                return 
+            }
+
+            if(Number.isNaN(sum)){
+                alert('หาค่าไม่ได้ กรุณากรอกเลขใหม่')
+                return 
+            }
+
+
+
+            setProposition(`(0.5*${formdata.get('eq_two_n')})(${formdata.get('eq_two_r')}<sup>2</sup>)*sin(360/${formdata.get('eq_two_n')})`)
             setAnswerText(sum.toFixed(2).toString())
 
         }
@@ -98,6 +109,7 @@ export default function CalculateVM() {
     return {
         actionCalculate,
         submitCalculate,
+        proposition,
         answerText,
         answerShow,
         ref_form,
