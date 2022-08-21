@@ -1,4 +1,5 @@
 import { useRef, useState } from "react"
+import exportedSwal from "../utils/swal"
 
 
 export default function CalculateVM() {
@@ -30,10 +31,10 @@ export default function CalculateVM() {
         event.preventDefault();
         const formdata = new FormData(event.currentTarget);
 
-        let data = {}
+        //let data = {}
 
         if(equat === 0){
-            alert('กรุณาเลือกสูตรก่อน !')
+            exportedSwal.actionInfo(`กรุณาเลือกสูตรก่อน !`)
             return
         }
 
@@ -45,27 +46,27 @@ export default function CalculateVM() {
                 formdata.get('eq_one_e') ===  "" ||
                 formdata.get('eq_one_f') ===  ""
                 ){
-                    alert('กรุณากรอกตัวแปรให้ครบในสูตรที่ 1 ก่อนกดคำนวณ !')
+                    exportedSwal.actionInfo(`กรุณากรอกตัวแปรให้ครบในสูตรที่ 1 ก่อนกดคำนวณ !`)
                     return
             }
 
 
-            let step1 = 0.125 *  Number(formdata.get('eq_one_n')) // (0.125*n)
-            let step2 = Number(formdata.get('eq_one_d')) ** 2 + Number(formdata.get('eq_one_e')) ** 2  - ( 4 * Number(formdata.get('eq_one_f')) ) // (D^2 + E^2 - 4F)
-            let step3 = Math.sin(360 / Number(formdata.get('eq_one_n')));
+            let step1 = 0.125 *  parseFloat(formdata.get('eq_one_n')?.toString()!) // (0.125*n)
+            let step2 = parseFloat(formdata.get('eq_one_d')?.toString()!) ** 2 + parseFloat(formdata.get('eq_one_e')?.toString()!) ** 2  - ( 4 * parseFloat(formdata.get('eq_one_f')?.toString()!) ) // (D^2 + E^2 - 4F)
+            let step3 = Math.sin(( 360 / parseFloat(formdata.get('eq_one_n')?.toString()!) ) * (Math.PI / 180));
             let sum =  step1 * step2 * step3
 
             if(sum < 0){
-                alert('หาค่าไม่ได้ กรุณากรอกเลขใหม่')
+                exportedSwal.actionInfo(`หาค่าไม่ได้ กรุณากรอกเลขใหม่`)
                 return 
             }
 
             if(Number.isNaN(sum)){
-                alert('หาค่าไม่ได้ กรุณากรอกเลขใหม่')
+                exportedSwal.actionInfo(`หาค่าไม่ได้ กรุณากรอกเลขใหม่`)
                 return 
             }
 
-            setProposition(`(0.125*${formdata.get('eq_one_n')})(${formdata.get('eq_one_d')}<sup>2</sup> + ${formdata.get('eq_one_e')}<sup>2</sup> -4(${formdata.get('eq_one_f')}))*sin(360/${formdata.get('eq_one_n')})`)
+            setProposition(`(0.125*${formdata.get('eq_one_n')})(${formdata.get('eq_one_d')}<sup>2</sup> + ${formdata.get('eq_one_e')}<sup>2</sup> -4(${formdata.get('eq_one_f')}))*sin( ( 360/${formdata.get('eq_one_n')} ) * (PI / 180)  )`)
             setAnswerText(sum.toFixed(2).toString())
 
         }
@@ -76,28 +77,28 @@ export default function CalculateVM() {
                 formdata.get('eq_two_n') ===  "" || 
                 formdata.get('eq_two_r') ===  ""
                 ){
-                    alert('กรุณากรอกตัวแปรให้ครบในสูตรที่ 2 ก่อนกดคำนวณ !')
+                    exportedSwal.actionInfo(`กรุณากรอกตัวแปรให้ครบในสูตรที่ 2 ก่อนกดคำนวณ !`)
                     return
             }
 
-            let step1 = 0.5 * Number(formdata.get('eq_two_n'))
-            let step2 = Number(formdata.get('eq_two_r')) ** 2
-            let step3 = Math.sin(360 / Number(formdata.get('eq_two_n')));
+            let step1 = 0.5 * parseFloat(formdata.get('eq_two_n')?.toString()!)
+            let step2 = parseFloat(formdata.get('eq_two_r')?.toString()!) ** 2
+            let step3 = Math.sin(( 360 / parseFloat(formdata.get('eq_two_n')?.toString()!) ) * (Math.PI / 180));
             let sum =  step1 * step2 * step3
 
             if(sum < 0){
-                alert('หาค่าไม่ได้ กรุณากรอกเลขใหม่')
+                exportedSwal.actionInfo(`หาค่าไม่ได้ กรุณากรอกเลขใหม่`)
                 return 
             }
 
             if(Number.isNaN(sum)){
-                alert('หาค่าไม่ได้ กรุณากรอกเลขใหม่')
+                exportedSwal.actionInfo(`หาค่าไม่ได้ กรุณากรอกเลขใหม่`)
                 return 
             }
 
 
 
-            setProposition(`(0.5*${formdata.get('eq_two_n')})(${formdata.get('eq_two_r')}<sup>2</sup>)*sin(360/${formdata.get('eq_two_n')})`)
+            setProposition(`(0.5*${formdata.get('eq_two_n')})(${formdata.get('eq_two_r')}<sup>2</sup>)*sin( ( 360/${formdata.get('eq_two_n')} )  * (PI / 180) )`)
             setAnswerText(sum.toFixed(2).toString())
 
         }
